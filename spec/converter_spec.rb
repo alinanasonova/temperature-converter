@@ -42,13 +42,4 @@ RSpec.describe IOAdapter do
       }.to output("this is the same scale, try again\n").to_stderr
     end
   end
-
-  describe '#is_it_your_birthday?' do 
-    it "should return \"Happy Birthday\" if user ipunt date matches today's date" do 
-      date = IOAdapter.new
-      date.stub(:gets) {IOAdapter.read_value.temperature("%m/%d")}
-      expect(date.read_value).to eq(puts "Happy Birthday!")
-    end
-
-  end
 end
