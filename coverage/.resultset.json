@@ -1,0 +1,83 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/mnt/d/univ/optpo/temperature-converter/lab1/temperature.rb": {
+        "lines": [
+          1,
+          1,
+          7,
+          null,
+          7,
+          null,
+          2,
+          null,
+          3,
+          null,
+          2,
+          null,
+          7,
+          null,
+          null,
+          1,
+          2,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          3,
+          null,
+          1,
+          null,
+          2,
+          null,
+          null,
+          null,
+          1,
+          2,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/mnt/d/univ/optpo/temperature-converter/lab1/io_adapter.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1637593277
+  }
+}

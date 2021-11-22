@@ -1,5 +1,6 @@
 load 'lab1/io_adapter.rb'
 load 'lab1/temperature.rb'
-
-a = IOAdapter.new
-a.IO
+if __FILE__ == $0
+  a = IOAdapter.new
+  a.input_output
+end

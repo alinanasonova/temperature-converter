@@ -32,14 +32,3 @@ RSpec.describe Converter do
   end
 end
 
-RSpec.describe IOAdapter do
-  describe '#IO' do 
-    it "is expected to output 'this is the same scale, try again'" do
-      expect {
-        begin IOAdapter.new.IO(34, 'C', 'C')
-        rescue SystemExit
-        end
-      }.to output("this is the same scale, try again\n").to_stderr
-    end
-  end
-end
