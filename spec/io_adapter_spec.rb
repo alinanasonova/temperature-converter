@@ -9,7 +9,7 @@ module Kernel
     out = StringIO.new
     $stdout = out
     yield
-    return out.string.strip
+    out.string.strip
   ensure
     $stdout = STDOUT
     $stdin = STDIN
@@ -17,37 +17,36 @@ module Kernel
 end
 
 RSpec.describe IOAdapter do
-  describe '#IO' do 
+  describe '#IO' do
     it "is expected to output 'this is the same scale, try again'" do
-      expect {
-        begin IOAdapter.new.input_output(34, 'C', 'C')
-        rescue SystemExit
-        end
-      }.to output("this is the same scale, try again\n").to_stderr
+      expect do
+        IOAdapter.new.input_output(34, 'C', 'C')
+      rescue SystemExit
+      end.to output("this is the same scale, try again\n").to_stderr
     end
   end
 
   describe '#read_value' do
     it "is expected to output 'not a number, try again'" do
-      expect {
-      input = '33a'
-      result = capture_stdout(input) do
-        IOAdapter.new.read_value
+      expect do
+        input = '33a'
+        result = capture_stdout(input) do
+          IOAdapter.new.read_value
         rescue SystemExit
-      end
-    }.to output("not a number, try again\n").to_stderr
+        end
+      end.to output("not a number, try again\n").to_stderr
     end
   end
 
   describe '#read_scale' do
-  it "is expected to output 'unknown scale, try again'" do
-      expect {
-      input = 'R'
-      result = capture_stdout(input) do
-        IOAdapter.new.read_scale
+    it "is expected to output 'unknown scale, try again'" do
+      expect do
+        input = 'R'
+        result = capture_stdout(input) do
+          IOAdapter.new.read_scale
         rescue SystemExit
-      end
-    }.to output("unknown scale, try again\n").to_stderr
+        end
+      end.to output("unknown scale, try again\n").to_stderr
     end
   end
 end
