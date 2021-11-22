@@ -22,6 +22,7 @@ RSpec.describe IOAdapter do
       expect do
         IOAdapter.new.input_output(34, 'C', 'C')
       rescue SystemExit
+        nil
       end.to output("this is the same scale, try again\n").to_stderr
     end
   end
@@ -30,9 +31,10 @@ RSpec.describe IOAdapter do
     it "is expected to output 'not a number, try again'" do
       expect do
         input = '33a'
-        result = capture_stdout(input) do
+        capture_stdout(input) do
           IOAdapter.new.read_value
         rescue SystemExit
+          nil
         end
       end.to output("not a number, try again\n").to_stderr
     end
@@ -42,9 +44,10 @@ RSpec.describe IOAdapter do
     it "is expected to output 'unknown scale, try again'" do
       expect do
         input = 'R'
-        result = capture_stdout(input) do
+        capture_stdout(input) do
           IOAdapter.new.read_scale
         rescue SystemExit
+          nil
         end
       end.to output("unknown scale, try again\n").to_stderr
     end
