@@ -12,7 +12,7 @@ class IOAdapter
   def read_scale(inpt = nil)
     puts 'choose a scale [C, K, F]:'
     inpt ||= gets.chomp.upcase
-    return inpt if inpt.match(/^C$|^K$|^F$/)
+    return inpt if inpt&.match(/^C$|^K$|^F$/)
 
     puts('unknown scale, try again')
     read_scale
