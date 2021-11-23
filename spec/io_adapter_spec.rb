@@ -1,55 +1,26 @@
-require './lab1/temperature'
 require './lab1/io_adapter'
-
+require './lab1/converter'
+require 'active_support'
 require 'stringio'
 
-module Kernel
-  def capture_stdout(console_input = '')
-    $stdin = StringIO.new(console_input)
-    out = StringIO.new
-    $stdout = out
-    yield
-    out.string.strip
-  ensure
-    $stdout = STDOUT
-    $stdin = STDIN
-  end
-end
-
 RSpec.describe IOAdapter do
-  describe '#IO' do
-    it "is expected to output 'this is the same scale, try again'" do
-      expect do
-        IOAdapter.new.input_output(34, 'C', 'C')
-      rescue SystemExit
-        nil
-      end.to output("this is the same scale, try again\n").to_stderr
-    end
+  describe '#input_output_ok' do
+    subject { capture_stdout { IOAdapter.new.input_output(34, 'C', 'K') } }
+    it { is_expected.to eq "34C = 307.15K\n" }
   end
 
-  describe '#read_value' do
-    it "is expected to output 'not a number, try again'" do
-      expect do
-        input = '33a'
-        capture_stdout(input) do
-          IOAdapter.new.read_value
-        rescue SystemExit
-          nil
-        end
-      end.to output("not a number, try again\n").to_stderr
-    end
+  describe '#read_scale_ok' do
+    subject { IOAdapter.new.read_scale('C') }
+    it { is_expected.to eq 'C' }
   end
 
-  describe '#read_scale' do
-    it "is expected to output 'unknown scale, try again'" do
-      expect do
-        input = 'R'
-        capture_stdout(input) do
-          IOAdapter.new.read_scale
-        rescue SystemExit
-          nil
-        end
-      end.to output("unknown scale, try again\n").to_stderr
-    end
+  describe '#read_value_ok' do
+    subject { IOAdapter.new.read_value('37') }
+    it { is_expected.to eq 37 }
   end
+
+  # describe '#read_value_error' do
+  #  subject { capture_stdout { IOAdapter.new.read_value("37c") } }
+  #  it { is_expected.to eq "enter temperature: not a number, try again\n" }
+  # end
 end
