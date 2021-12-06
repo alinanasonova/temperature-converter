@@ -14,11 +14,11 @@ RSpec.describe IOAdapter do
       it { is_expected.to eq 'C' }
     end
     context '.incorrect' do
-      it "is expected to output 'unknown scale, try again'" do 
-        allow(described_class).to receive(:loop) do |&block|
+      it "is expected to output 'unknown scale, try again'" do
+        allow(described_class).to receive(:loop) do
           date = IOAdapter.new
-          date.stub(:gets) {date.read_scale.inpt("dfe3")}
-          expect(date.read_scale).to eq(puts "unknown scale, try again")
+          date.stub(:gets) { date.read_scale.inpt('dfe3') }
+          expect(date.read_scale).to eq(puts('unknown scale, try again'))
         end
       end
     end
@@ -30,11 +30,11 @@ RSpec.describe IOAdapter do
       it { is_expected.to eq 37 }
     end
     context '.incorrect' do
-      it "is expected to output 'not a number, try again'" do 
-        allow(described_class).to receive(:loop) do |&block|
+      it "is expected to output 'not a number, try again'" do
+        allow(described_class).to receive(:loop) do
           date = IOAdapter.new
-          date.stub(:gets) {date.read_value.temperature("33asd")}
-          expect(date.read_value).to eq(puts "not a number, try again")
+          date.stub(:gets) { date.read_value.temperature('33asd') }
+          expect(date.read_value).to eq(puts('not a number, try again'))
         end
       end
     end

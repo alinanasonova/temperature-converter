@@ -4,6 +4,7 @@ class IOAdapter
     loop do
       temperature ||= gets
       return temperature.to_f if temperature&.match(/^(?!-0$)[+-]?([1-9]\d*|0)(\.\d+)?$/)
+
       puts 'not a number, try again'
     end
   end
@@ -13,6 +14,7 @@ class IOAdapter
     loop do
       inpt ||= gets.chomp.upcase
       return inpt if inpt&.match(/^C$|^K$|^F$/)
+
       puts 'unknown scale, try again'
     end
   end
