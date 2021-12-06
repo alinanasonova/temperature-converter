@@ -1,5 +1,4 @@
 require './lab1/io_adapter'
-require './lab1/converter'
 
 RSpec.describe IOAdapter do
   describe '#input_output' do
@@ -14,6 +13,15 @@ RSpec.describe IOAdapter do
       subject { IOAdapter.new.read_scale('C') }
       it { is_expected.to eq 'C' }
     end
+    context '.incorrect' do
+      it "is expected to output 'unknown scale, try again'" do 
+        allow(described_class).to receive(:loop) do |&block|
+          date = IOAdapter.new
+          date.stub(:gets) {date.read_scale.inpt("dfe3")}
+          expect(date.read_scale).to eq(puts "unknown scale, try again")
+        end
+      end
+    end
   end
 
   describe '#read_value' do
@@ -21,15 +29,14 @@ RSpec.describe IOAdapter do
       subject { IOAdapter.new.read_value('37') }
       it { is_expected.to eq 37 }
     end
-  end
-
-  describe '#read_value' do
-    context '.stay_in_one_state' do
-      $stdin = StringIO.new
-      $stdin.puts("34\n")
-      $stdin.rewind
-      subject { capture_stdout { IOAdapter.new.read_value('37c') } }
-      it { is_expected.to eq "enter temperature: not a number, try again\nenter temperature: " }
+    context '.incorrect' do
+      it "is expected to output 'not a number, try again'" do 
+        allow(described_class).to receive(:loop) do |&block|
+          date = IOAdapter.new
+          date.stub(:gets) {date.read_value.temperature("33asd")}
+          expect(date.read_value).to eq(puts "not a number, try again")
+        end
+      end
     end
   end
 end

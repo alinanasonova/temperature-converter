@@ -15,6 +15,16 @@ module Stdouthelp
     end
     fake.string
   end
+  #def capture_stdout(console_input = '')
+  #  $stdin = StringIO.new(console_input)
+  #  out = StringIO.new
+  #  $stdout = out
+  #  yield
+  #  out.string.strip
+  #ensure
+  #  $stdout = STDOUT
+  #  $stdin = STDIN
+  #end
 end
 
 RSpec.configure do |conf|
